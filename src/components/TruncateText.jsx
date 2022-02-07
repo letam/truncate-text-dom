@@ -1,13 +1,127 @@
-export default function TruncateText({ children = '' }) {
-  const maxChars = 4;
-  if (children.length > maxChars) {
-    return children.substring(0, 4) + '...';
+const EXPAND_TEXT_LABEL = 'more';
+
+export default function TruncateText({ children = '', maxLines = 4 }) {
+  const { text: truncatedText, isTruncated } = truncateText(children, maxLines);
+
+  if (isTruncated) {
+    return (
+      <>
+        {truncatedText}
+        <ExpandTextLabel />
+      </>
+    );
   }
+
   return children;
 }
 
-// TODO: Add button to expand text at bottom right of visible component
-// TODO: Cut off extraneous whitespace
-// TODO: Linkify whole text
-// TODO: Handle fixed width
-// TODO: Handle variable width
+function ExpandTextLabel({ label = EXPAND_TEXT_LABEL }) {
+  return <span> {label}</span>;
+}
+
+/**
+ * Returns truncated version of text, such that it would fit within container of specified max number of lines and width.
+ * Takes into account the font of text, and leaves room for ellipsis before a button containing label to expand text.
+ * @param {string} text - The text to truncate
+ * @param {number=} maxLines - The max number of lines which the text should occupy after truncation
+ * @param {number=} width - Width of container displaying truncated text
+ * @param {string=} expandTextLabel - The label of the button to expand the text (Used to calculate truncated text)
+ * @param {string=} font - Font properties of text (size and font)
+ * @returns {{ text: string, isTruncated: boolean }}
+ */
+function truncateText(
+  text,
+  maxLines = 4,
+  width = 360,
+  expandTextLabel = EXPAND_TEXT_LABEL,
+  font = ''
+) {
+  let isTruncated = false;
+  const lineContainer = document.createElement('span');
+  if (font) lineContainer.style.font = font;
+  lineContainer.style.zIndex = '-1';
+  lineContainer.style.visibility = 'hidden';
+  lineContainer.style.position = 'absolute';
+  lineContainer.style.top = '0';
+  lineContainer.style.left = '0';
+
+  const textArraySplitOnSpaces = text.split(' ');
+  const textArraySplitOnSpacesAndNewlines = [];
+  textArraySplitOnSpaces.forEach((chunk) => {
+    if (!chunk.includes('\n')) {
+      textArraySplitOnSpacesAndNewlines.push(chunk);
+    } else {
+      const chunkSplitOnNewlines = chunk.split('\n');
+      chunkSplitOnNewlines.forEach((word) => {
+        if (word === '') {
+          textArraySplitOnSpacesAndNewlines.push('\n');
+          // If first character of chunk is not a new line, then that means that there is presence of double new line (i.e. '\n\n')
+          if (chunk[0] !== '\n') {
+            textArraySplitOnSpacesAndNewlines.push('\n');
+          }
+        } else {
+          textArraySplitOnSpacesAndNewlines.push(word);
+        }
+      });
+    }
+  });
+  const textArray = textArraySplitOnSpacesAndNewlines;
+
+  document.body.appendChild(lineContainer);
+  let textArrayIndex = 0;
+  let linesRemaining = maxLines;
+  let lineContent = '';
+  let previousLineContent = '';
+  let truncatedText = '';
+  while (linesRemaining > 0) {
+    lineContent = '';
+    lineContainer.innerText = '';
+    const expandTextLabelValue = '... ' + expandTextLabel;
+    if (linesRemaining === 1) {
+      // Add expandTextLabelValue to lineContent to include in width of last line before truncation; will remove it from beginning of value later
+      lineContent = expandTextLabelValue;
+    }
+    while (lineContainer.clientWidth < width) {
+      previousLineContent = lineContent; // To restore previous content in case next word added results in text overflow
+      if (textArray[textArrayIndex] === '') {
+        lineContent += ' ';
+      } else if (textArray[textArrayIndex] === '\n') {
+        lineContent += '\n';
+        textArrayIndex++;
+        break;
+      } else {
+        lineContent += textArray[textArrayIndex] + ' ';
+      }
+      lineContainer.innerText = lineContent;
+      if (lineContainer.clientWidth > width) {
+        lineContent = previousLineContent;
+        break;
+      } else {
+        textArrayIndex++;
+        if (lineContainer.clientWidth === width) {
+          break;
+        }
+      }
+    }
+    if (linesRemaining === 1) {
+      // Remove expandTextLabelValue from beginning of line
+      lineContent = lineContent.slice(expandTextLabelValue.length);
+      if (lineContent === '\n') {
+        // If it's a newline, then don't end the truncated content with it, and instead just place the ellipsis there
+        lineContent = '...';
+      } else {
+        // Remove space at end and add ellipsis
+        lineContent = lineContent.trimEnd() + '...';
+      }
+    }
+    // TODO: Deal with ending on blank lines
+    truncatedText += lineContent;
+    linesRemaining--;
+    if (linesRemaining === 0) {
+      isTruncated = textArray[textArrayIndex] !== undefined;
+    }
+  }
+  document.body.removeChild(lineContainer);
+
+  return { text: truncatedText, isTruncated: isTruncated };
+}
