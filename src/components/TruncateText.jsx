@@ -95,7 +95,7 @@ function truncateText(
         lineContent += textArray[textArrayIndex] + ' ';
       }
       lineContainer.innerText = lineContent;
-      if (lineContainer.clientWidth > width) {
+      if (lineContainer.clientWidth >= width) {
         lineContent = previousLineContent;
         break;
       } else {
