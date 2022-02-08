@@ -1,7 +1,9 @@
 {
   "name": "truncate-text",
   "version": "0.1.0",
-  "private": true,
+  "description": "Function for finely-tuned text truncation in the DOM.",
+  "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
