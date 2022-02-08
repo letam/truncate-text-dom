@@ -4,13 +4,17 @@ const DEFAULT_EXPAND_TEXT_LABEL = 'more';
 
 export default function TruncateText({
   children = '',
-  maxLines = 4,
+  maxLines = DEFAULT_MAX_LINES,
   width = DEFAULT_WIDTH,
+  expandTextLabel,
+  styles,
 }) {
   const { text: truncatedText, isTruncated } = truncateText(
     children,
     maxLines,
-    width
+    width,
+    expandTextLabel,
+    styles
   );
 
   if (isTruncated) {
