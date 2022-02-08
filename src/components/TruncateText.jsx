@@ -5,6 +5,8 @@ import {
   DEFAULT_EXPAND_TEXT_LABEL,
 } from '../truncateText';
 
+export { DEFAULT_MAX_LINES, DEFAULT_WIDTH, DEFAULT_EXPAND_TEXT_LABEL };
+
 export default function TruncateText({
   children = '',
   maxLines = DEFAULT_MAX_LINES,
