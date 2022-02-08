@@ -109,14 +109,14 @@ function truncateText(
       // Remove expandTextLabelValue from beginning of line
       lineContent = lineContent.slice(expandTextLabelValue.length);
       if (lineContent === '\n') {
-        // If it's a newline, then don't end the truncated content with it, and instead just place the ellipsis there
-        lineContent = '...';
-      } else {
-        // Remove space at end and add ellipsis
-        lineContent = lineContent.trimEnd() + '...';
+        // Remove trailing newlines of truncated text
+        while (truncatedText.endsWith('\n')) {
+          truncatedText = truncatedText.trimEnd();
+        }
       }
+      // Remove spaces at end and add ellipsis
+      lineContent = lineContent.trimEnd() + '...';
     }
-    // TODO: Deal with ending on blank lines
     truncatedText += lineContent;
     linesRemaining--;
     if (linesRemaining === 0) {
