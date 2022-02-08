@@ -2,8 +2,16 @@ const DEFAULT_MAX_LINES = 4;
 export const DEFAULT_WIDTH = 360;
 const DEFAULT_EXPAND_TEXT_LABEL = 'more';
 
-export default function TruncateText({ children = '', maxLines = 4 }) {
-  const { text: truncatedText, isTruncated } = truncateText(children, maxLines);
+export default function TruncateText({
+  children = '',
+  maxLines = 4,
+  width = DEFAULT_WIDTH,
+}) {
+  const { text: truncatedText, isTruncated } = truncateText(
+    children,
+    maxLines,
+    width
+  );
 
   if (isTruncated) {
     return (
