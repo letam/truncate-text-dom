@@ -62,7 +62,7 @@ export function truncateText(
   let previousLineContent = '';
   let truncatedText = '';
 
-  while (linesRemaining > 0) {
+  while (linesRemaining > 0 && textArrayIndex < textArray.length) {
     lineContent = '';
     lineContainer.innerText = '';
 
@@ -71,7 +71,10 @@ export function truncateText(
       lineContent = expandTextLabel;
     }
 
-    while (lineContainer.clientWidth < width) {
+    while (
+      lineContainer.clientWidth < width &&
+      textArrayIndex < textArray.length
+    ) {
       previousLineContent = lineContent; // To restore previous content in case next word added results in text overflow
 
       if (textArray[textArrayIndex] === '') {
