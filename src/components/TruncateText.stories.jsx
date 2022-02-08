@@ -68,3 +68,14 @@ export const TrailingNewlines = Template.bind({});
 TrailingNewlines.args = {
   children: TRAILING_NEWLINES,
 };
+
+// Contains consecutive linebreaks
+const CONSECUTIVE_LINEBREAKS = `Lorem ipsum dolor sit amet, consectetur adipisicing
+
+
+elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ex ea commodo consequat. 
+`;
+export const ConsecutiveLinebreaks = Template.bind({});
+ConsecutiveLinebreaks.args = {
+  children: CONSECUTIVE_LINEBREAKS,
+};
