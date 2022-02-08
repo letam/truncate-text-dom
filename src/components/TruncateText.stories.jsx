@@ -1,4 +1,4 @@
-import TruncateText from './TruncateText';
+import TruncateText, { DEFAULT_WIDTH } from './TruncateText';
 
 export default {
   title: 'TruncateText',
@@ -6,7 +6,13 @@ export default {
 };
 
 const Template = (args) => (
-  <div style={{ border: '1px dotted gray', width: '360px' }}>
+  <div
+    style={{
+      whiteSpace: 'pre-wrap',
+      border: '1px dotted gray',
+      width: DEFAULT_WIDTH,
+    }}
+  >
     <TruncateText {...args} />
   </div>
 );

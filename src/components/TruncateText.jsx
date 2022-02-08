@@ -1,4 +1,6 @@
-const EXPAND_TEXT_LABEL = 'more';
+const DEFAULT_MAX_LINES = 4;
+export const DEFAULT_WIDTH = 360;
+const DEFAULT_EXPAND_TEXT_LABEL = 'more';
 
 export default function TruncateText({ children = '', maxLines = 4 }) {
   const { text: truncatedText, isTruncated } = truncateText(children, maxLines);
@@ -15,7 +17,7 @@ export default function TruncateText({ children = '', maxLines = 4 }) {
   return children;
 }
 
-function ExpandTextLabel({ label = EXPAND_TEXT_LABEL }) {
+function ExpandTextLabel({ label = DEFAULT_EXPAND_TEXT_LABEL }) {
   return <span> {label}</span>;
 }
 
@@ -31,9 +33,9 @@ function ExpandTextLabel({ label = EXPAND_TEXT_LABEL }) {
  */
 function truncateText(
   text,
-  maxLines = 4,
-  width = 360,
-  expandTextLabel = EXPAND_TEXT_LABEL,
+  maxLines = DEFAULT_MAX_LINES,
+  width = DEFAULT_WIDTH,
+  expandTextLabel = DEFAULT_EXPAND_TEXT_LABEL,
   font = ''
 ) {
   let isTruncated = false;
