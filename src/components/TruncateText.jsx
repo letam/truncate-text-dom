@@ -139,16 +139,16 @@ function truncateText(
         }
       }
 
-      // Remove spaces at end and add ellipsis
-      lineContent = lineContent.trimEnd() + '...';
+      isTruncated = textArray[textArrayIndex] !== undefined;
+      if (isTruncated) {
+        // Remove spaces at end and add ellipsis
+        lineContent = lineContent.trimEnd() + '...';
+      }
     }
 
     truncatedText += lineContent;
 
     linesRemaining--;
-    if (linesRemaining === 0) {
-      isTruncated = textArray[textArrayIndex] !== undefined;
-    }
   }
 
   document.body.removeChild(lineContainer);
