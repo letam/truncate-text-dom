@@ -43,3 +43,14 @@ export const ContainsLinebreak = Template.bind({});
 ContainsLinebreak.args = {
   children: CONTAINS_LINEBREAK,
 };
+
+// Truncated text ends with trailing newlines - should remove them
+const TRAILING_NEWLINES = `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
+
+
+labore et dolore magna aliqua ex ea commodo consequat. 
+`;
+export const TrailingNewlines = Template.bind({});
+TrailingNewlines.args = {
+  children: TRAILING_NEWLINES,
+};
