@@ -28,7 +28,7 @@ function ExpandTextLabel({ label = DEFAULT_EXPAND_TEXT_LABEL }) {
  * @param {number=} maxLines - The max number of lines which the text should occupy after truncation
  * @param {number=} width - Width of container displaying truncated text
  * @param {string=} expandTextLabel - The label of the button to expand the text (Used to calculate truncated text)
- * @param {string=} font - Font properties of text (size and font)
+ * @param {Object.<string, string>=} styles - Styles to apply to text size calculation (i.e. font, letter-spacing)
  * @returns {{ text: string, isTruncated: boolean }}
  */
 function truncateText(
@@ -36,11 +36,15 @@ function truncateText(
   maxLines = DEFAULT_MAX_LINES,
   width = DEFAULT_WIDTH,
   expandTextLabel = DEFAULT_EXPAND_TEXT_LABEL,
-  font = ''
+  styles = undefined
 ) {
   let isTruncated = false;
   const lineContainer = document.createElement('span');
-  if (font) lineContainer.style.font = font;
+  if (styles) {
+    Object.entries(styles).forEach(([prop, value]) => {
+      lineContainer.style[prop] = value;
+    });
+  }
   lineContainer.style.zIndex = '-1';
   lineContainer.style.visibility = 'hidden';
   lineContainer.style.position = 'absolute';
