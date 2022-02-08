@@ -141,20 +141,16 @@ function truncateText(
       if (textArrayIndex < textArray.length - 1) {
         let currentTextArrayIndex = textArrayIndex;
         let currentLineContent = lineContent;
-        while (
-          textArrayIndex < textArray.length - 1 &&
-          lineContainer.clientWidth < width
-        ) {
+
+        const isWordsRemaining = () => textArrayIndex < textArray.length - 1;
+        while (isWordsRemaining() && lineContainer.clientWidth <= width) {
           lineContent += textArray[textArrayIndex] + ' ';
           lineContainer.innerText = lineContent;
           textArrayIndex++;
         }
 
-        isTruncated = !(
-          textArrayIndex === textArray.length - 1 &&
-          lineContainer.clientWidth <= width
-        );
-
+        const isLastIndexReached = textArrayIndex === textArray.length - 1;
+        isTruncated = !isLastIndexReached || lineContainer.clientWidth > width;
         if (isTruncated) {
           lineContent = currentLineContent;
           textArrayIndex = currentTextArrayIndex;
