@@ -68,6 +68,7 @@ function truncateText(
   const textArray = textArraySplitOnSpacesAndNewlines;
 
   document.body.appendChild(lineContainer);
+  const expandTextLabelValue = '... ' + expandTextLabel;
   let textArrayIndex = 0;
   let linesRemaining = maxLines;
   let lineContent = '';
@@ -76,7 +77,6 @@ function truncateText(
   while (linesRemaining > 0) {
     lineContent = '';
     lineContainer.innerText = '';
-    const expandTextLabelValue = '... ' + expandTextLabel;
     if (linesRemaining === 1) {
       // Add expandTextLabelValue to lineContent to include in width of last line before truncation; will remove it from beginning of value later
       lineContent = expandTextLabelValue;
