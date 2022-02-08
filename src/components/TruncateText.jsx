@@ -1,6 +1,6 @@
 const DEFAULT_MAX_LINES = 4;
 export const DEFAULT_WIDTH = 360;
-const DEFAULT_EXPAND_TEXT_LABEL = 'more';
+const DEFAULT_EXPAND_TEXT_LABEL = '... more';
 
 export default function TruncateText({
   children = '',
@@ -20,8 +20,7 @@ export default function TruncateText({
   if (isTruncated) {
     return (
       <>
-        {truncatedText}
-        <ExpandTextLabel />
+        {truncatedText} <ExpandTextLabel />
       </>
     );
   }
@@ -30,12 +29,12 @@ export default function TruncateText({
 }
 
 function ExpandTextLabel({ label = DEFAULT_EXPAND_TEXT_LABEL }) {
-  return <span> {label}</span>;
+  return <span style={{ whiteSpace: 'nowrap' }}>{label}</span>;
 }
 
 /**
  * Returns truncated version of text, such that it would fit within container of specified max number of lines and width.
- * Takes into account the font of text, and leaves room for ellipsis before a button containing label to expand text.
+ * Takes into account the font of text, and leaves room for a labeled button to expand text.
  * @param {string} text - The text to truncate
  * @param {number=} maxLines - The max number of lines which the text should occupy after truncation
  * @param {number=} width - Width of container displaying truncated text
@@ -87,7 +86,6 @@ function truncateText(
 
   document.body.appendChild(lineContainer);
 
-  const expandTextLabelValue = '... ' + expandTextLabel;
   let textArrayIndex = 0;
   let linesRemaining = maxLines;
   let lineContent = '';
@@ -99,8 +97,8 @@ function truncateText(
     lineContainer.innerText = '';
 
     if (linesRemaining === 1) {
-      // Add expandTextLabelValue to lineContent to include in width of last line before truncation; will remove it from beginning of value later
-      lineContent = expandTextLabelValue;
+      // Add expandTextLabel to lineContent to include in width of last line before truncation; will remove it from beginning of value later
+      lineContent = expandTextLabel;
     }
 
     while (lineContainer.clientWidth < width) {
@@ -129,8 +127,8 @@ function truncateText(
     }
 
     if (linesRemaining === 1) {
-      // Remove expandTextLabelValue from beginning of line
-      lineContent = lineContent.slice(expandTextLabelValue.length);
+      // Remove expandTextLabel from beginning of line
+      lineContent = lineContent.slice(expandTextLabel.length);
 
       // Remove trailing newlines of truncated text
       if (lineContent === '\n') {
@@ -141,8 +139,8 @@ function truncateText(
 
       isTruncated = textArray[textArrayIndex] !== undefined;
       if (isTruncated) {
-        // Remove spaces at end and add ellipsis
-        lineContent = lineContent.trimEnd() + '...';
+        // Remove spaces at end
+        lineContent = lineContent.trimEnd();
       }
     }
 
