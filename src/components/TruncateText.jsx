@@ -34,7 +34,7 @@ function ExpandTextLabel({ label = DEFAULT_EXPAND_TEXT_LABEL }) {
 
 /**
  * Returns truncated version of text, such that it would fit within container of specified max number of lines and width.
- * Takes into account the font of text, and leaves room for a labeled button to expand text.
+ * Takes into account the style properties of text, and leaves room for a labeled button to expand text.
  * @param {string} text - The text to truncate
  * @param {number=} maxLines - The max number of lines which the text should occupy after truncation
  * @param {number=} width - Width of container displaying truncated text
