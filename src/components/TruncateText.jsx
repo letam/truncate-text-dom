@@ -137,7 +137,30 @@ function truncateText(
         }
       }
 
-      isTruncated = textArray[textArrayIndex] !== undefined;
+      // Check if remaining text can fit without truncation
+      if (textArrayIndex < textArray.length - 1) {
+        let currentTextArrayIndex = textArrayIndex;
+        let currentLineContent = lineContent;
+        while (
+          textArrayIndex < textArray.length - 1 &&
+          lineContainer.clientWidth < width
+        ) {
+          lineContent += textArray[textArrayIndex] + ' ';
+          lineContainer.innerText = lineContent;
+          textArrayIndex++;
+        }
+
+        isTruncated = !(
+          textArrayIndex === textArray.length - 1 &&
+          lineContainer.clientWidth <= width
+        );
+
+        if (isTruncated) {
+          lineContent = currentLineContent;
+          textArrayIndex = currentTextArrayIndex;
+        }
+      }
+
       if (isTruncated) {
         // Remove spaces at end
         lineContent = lineContent.trimEnd();
