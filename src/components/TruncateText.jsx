@@ -86,21 +86,26 @@ function truncateText(
   const textArray = textArraySplitOnSpacesAndNewlines;
 
   document.body.appendChild(lineContainer);
+
   const expandTextLabelValue = '... ' + expandTextLabel;
   let textArrayIndex = 0;
   let linesRemaining = maxLines;
   let lineContent = '';
   let previousLineContent = '';
   let truncatedText = '';
+
   while (linesRemaining > 0) {
     lineContent = '';
     lineContainer.innerText = '';
+
     if (linesRemaining === 1) {
       // Add expandTextLabelValue to lineContent to include in width of last line before truncation; will remove it from beginning of value later
       lineContent = expandTextLabelValue;
     }
+
     while (lineContainer.clientWidth < width) {
       previousLineContent = lineContent; // To restore previous content in case next word added results in text overflow
+
       if (textArray[textArrayIndex] === '') {
         lineContent += ' ';
       } else if (textArray[textArrayIndex] === '\n') {
@@ -110,6 +115,7 @@ function truncateText(
       } else {
         lineContent += textArray[textArrayIndex] + ' ';
       }
+
       lineContainer.innerText = lineContent;
       if (lineContainer.clientWidth >= width) {
         lineContent = previousLineContent;
@@ -121,24 +127,30 @@ function truncateText(
         }
       }
     }
+
     if (linesRemaining === 1) {
       // Remove expandTextLabelValue from beginning of line
       lineContent = lineContent.slice(expandTextLabelValue.length);
+
+      // Remove trailing newlines of truncated text
       if (lineContent === '\n') {
-        // Remove trailing newlines of truncated text
         while (truncatedText.endsWith('\n')) {
           truncatedText = truncatedText.trimEnd();
         }
       }
+
       // Remove spaces at end and add ellipsis
       lineContent = lineContent.trimEnd() + '...';
     }
+
     truncatedText += lineContent;
+
     linesRemaining--;
     if (linesRemaining === 0) {
       isTruncated = textArray[textArrayIndex] !== undefined;
     }
   }
+
   document.body.removeChild(lineContainer);
 
   return { text: truncatedText, isTruncated: isTruncated };
