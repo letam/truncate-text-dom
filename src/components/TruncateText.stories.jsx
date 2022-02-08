@@ -33,3 +33,13 @@ export const TruncateOnOverflow = Template.bind({});
 TruncateOnOverflow.args = {
   children: DUMMY_TEXT,
 };
+
+// Contains linebreak
+const CONTAINS_LINEBREAK = `Lorem ipsum dolor sit amet, consectetur adipisicing
+
+elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+`;
+export const ContainsLinebreak = Template.bind({});
+ContainsLinebreak.args = {
+  children: CONTAINS_LINEBREAK,
+};
