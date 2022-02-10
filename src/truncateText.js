@@ -32,27 +32,7 @@ export function truncateText(
   lineContainer.style.top = '0';
   lineContainer.style.left = '0';
 
-  const textArraySplitOnSpaces = text.split(' ');
-  const textArraySplitOnSpacesAndNewlines = [];
-  textArraySplitOnSpaces.forEach((chunk) => {
-    if (!chunk.includes('\n')) {
-      textArraySplitOnSpacesAndNewlines.push(chunk);
-    } else {
-      const chunkSplitOnNewlines = chunk.split('\n');
-      chunkSplitOnNewlines.forEach((word) => {
-        if (word === '') {
-          textArraySplitOnSpacesAndNewlines.push('\n');
-          // If first character of chunk is not a new line, then that means that there is presence of double new line (i.e. '\n\n')
-          if (chunk[0] !== '\n') {
-            textArraySplitOnSpacesAndNewlines.push('\n');
-          }
-        } else {
-          textArraySplitOnSpacesAndNewlines.push(word);
-        }
-      });
-    }
-  });
-  const textArray = textArraySplitOnSpacesAndNewlines;
+  const textArray = splitStringOnSpacesAndNewlines(text);
 
   document.body.appendChild(lineContainer);
 
@@ -145,4 +125,29 @@ export function truncateText(
   document.body.removeChild(lineContainer);
 
   return { text: truncatedText, isTruncated: isTruncated };
+}
+
+function splitStringOnSpacesAndNewlines(string) {
+  const stringArraySplitOnSpaces = string.split(' ');
+  const stringArraySplitOnSpacesAndNewlines = [];
+  stringArraySplitOnSpaces.forEach((chunk) => {
+    if (!chunk.includes('\n')) {
+      stringArraySplitOnSpacesAndNewlines.push(chunk);
+    } else {
+		// FIXME: Use recursive algorithm to properly split on all newlines
+      const chunkSplitOnNewlines = chunk.split('\n');
+      chunkSplitOnNewlines.forEach((word) => {
+        if (word === '') {
+          stringArraySplitOnSpacesAndNewlines.push('\n');
+          // If first character of chunk is not a new line, then that means that there is presence of double new line (i.e. '\n\n')
+          if (chunk[0] !== '\n') {
+            stringArraySplitOnSpacesAndNewlines.push('\n');
+          }
+        } else {
+          stringArraySplitOnSpacesAndNewlines.push(word);
+        }
+      });
+    }
+  });
+  return stringArraySplitOnSpacesAndNewlines;
 }
