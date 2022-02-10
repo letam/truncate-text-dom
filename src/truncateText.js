@@ -57,7 +57,7 @@ export function truncateText(
     ) {
       previousLineContent = lineContent; // To restore previous content in case next word added results in text overflow
 
-      if (textArray[textArrayIndex] === '') {
+      if (textArray[textArrayIndex] === ' ') {
         lineContent += ' ';
       } else if (textArray[textArrayIndex] === '\n') {
         lineContent += '\n';
@@ -140,6 +140,8 @@ function splitStringOnSpacesAndNewlines(string) {
       if (word) {
         array.push(word);
         word = '';
+      } else if (char === ' ') {
+        array.push(char);
       }
       if (char === '\n') {
         array.push(char);
