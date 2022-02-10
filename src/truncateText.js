@@ -128,26 +128,24 @@ export function truncateText(
 }
 
 function splitStringOnSpacesAndNewlines(string) {
-  const stringArraySplitOnSpaces = string.split(' ');
-  const stringArraySplitOnSpacesAndNewlines = [];
-  stringArraySplitOnSpaces.forEach((chunk) => {
-    if (!chunk.includes('\n')) {
-      stringArraySplitOnSpacesAndNewlines.push(chunk);
+  let array = [];
+  let word = '';
+  for (let char of string.split('')) {
+    if ([' ', '\n'].includes(char)) {
+      if (word) {
+        array.push(word);
+        word = '';
+      }
+      if (char === '\n') {
+        array.push(char);
+      }
     } else {
-		// FIXME: Use recursive algorithm to properly split on all newlines
-      const chunkSplitOnNewlines = chunk.split('\n');
-      chunkSplitOnNewlines.forEach((word) => {
-        if (word === '') {
-          stringArraySplitOnSpacesAndNewlines.push('\n');
-          // If first character of chunk is not a new line, then that means that there is presence of double new line (i.e. '\n\n')
-          if (chunk[0] !== '\n') {
-            stringArraySplitOnSpacesAndNewlines.push('\n');
-          }
-        } else {
-          stringArraySplitOnSpacesAndNewlines.push(word);
-        }
-      });
+      word += char;
     }
-  });
-  return stringArraySplitOnSpacesAndNewlines;
+  }
+  if (word) {
+    array.push(word);
+    word = '';
+  }
+  return array;
 }
