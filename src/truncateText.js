@@ -127,6 +127,11 @@ export function truncateText(
   return { text: truncatedText, isTruncated: isTruncated };
 }
 
+/**
+ * Returns string split on spaces, while including individual newline entries.
+ * @param {string} string - The string to split
+ * @returns {string[]}
+ */
 function splitStringOnSpacesAndNewlines(string) {
   let array = [];
   let word = '';
