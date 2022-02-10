@@ -136,16 +136,19 @@ function splitStringOnSpacesAndNewlines(string) {
   let array = [];
   let word = '';
   for (let char of string.split('')) {
-    if ([' ', '\n'].includes(char)) {
+    if (char === ' ') {
       if (word) {
         array.push(word);
         word = '';
-      } else if (char === ' ') {
+      } else {
         array.push(char);
       }
-      if (char === '\n') {
-        array.push(char);
+    } else if (char === '\n') {
+      if (word) {
+        array.push(word);
+        word = '';
       }
+      array.push(char);
     } else {
       word += char;
     }
