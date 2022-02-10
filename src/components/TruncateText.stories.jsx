@@ -35,14 +35,14 @@ TruncateOnOverflow.args = {
 };
 
 // Fits flush without truncation
-const FITS_FLUSH_NO_TRUNCATE = `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip!`;
+const FITS_FLUSH_NO_TRUNCATE = `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea`;
 export const FitsFlushNoTruncate = Template.bind({});
 FitsFlushNoTruncate.args = {
   children: FITS_FLUSH_NO_TRUNCATE,
 };
 
 // Slightly over the limit
-const SLIGHT_OVERFLOW = `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex`;
+const SLIGHT_OVERFLOW = `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.`;
 export const SlightOverflow = Template.bind({});
 SlightOverflow.args = {
   children: SLIGHT_OVERFLOW,

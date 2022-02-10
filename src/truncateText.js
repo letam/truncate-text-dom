@@ -90,6 +90,7 @@ export function truncateText(
       lineContainer.innerText = lineContent;
       if (lineContainer.clientWidth >= width) {
         lineContent = previousLineContent;
+        lineContainer.innerText = lineContent;
         break;
       } else {
         textArrayIndex++;
@@ -111,18 +112,18 @@ export function truncateText(
       }
 
       // Check if remaining text can fit without truncation
-      if (textArrayIndex < textArray.length - 1) {
+      if (textArrayIndex <= textArray.length - 1) {
         let currentTextArrayIndex = textArrayIndex;
         let currentLineContent = lineContent;
 
-        const isWordsRemaining = () => textArrayIndex < textArray.length - 1;
+        const isWordsRemaining = () => textArrayIndex <= textArray.length - 1;
         while (isWordsRemaining() && lineContainer.clientWidth <= width) {
           lineContent += textArray[textArrayIndex] + ' ';
           lineContainer.innerText = lineContent;
           textArrayIndex++;
         }
 
-        const isLastIndexReached = textArrayIndex === textArray.length - 1;
+        const isLastIndexReached = textArrayIndex > textArray.length - 1;
         isTruncated = !isLastIndexReached || lineContainer.clientWidth > width;
         if (isTruncated) {
           lineContent = currentLineContent;
