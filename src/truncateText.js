@@ -83,16 +83,18 @@ export function truncateText(
     if (linesRemaining === 1) {
       // Remove expandTextLabel from beginning of line
       lineContent = lineContent.slice(expandTextLabel.length);
+      lineContainer.innerText = lineContent;
 
-      // Remove trailing newlines of truncated text
       if (lineContent === '\n') {
+        // Remove trailing newlines of truncated text
         while (truncatedText.endsWith('\n')) {
           truncatedText = truncatedText.trimEnd();
         }
-      }
-
-      // Check if remaining text can fit without truncation
-      if (textArrayIndex <= textArray.length - 1) {
+        isTruncated = true;
+      } else if (lineContent.endsWith('\n')) {
+        isTruncated = true;
+      } else if (textArrayIndex <= textArray.length - 1) {
+        // Check if remaining text can fit without truncation
         let currentTextArrayIndex = textArrayIndex;
         let currentLineContent = lineContent;
 

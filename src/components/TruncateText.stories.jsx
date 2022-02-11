@@ -95,3 +95,13 @@ export const ConsecutiveLinebreaks = Template.bind({});
 ConsecutiveLinebreaks.args = {
   children: CONSECUTIVE_LINEBREAKS,
 };
+
+const ENDS_ON_NEWLINE_WHILE_NEXTLINE_FITS = `Lorem ipsum dolor sit amet, consectetur
+Lorem ipsum dolor sit amet, consectetur
+Lorem ipsum dolor sit amet, consectetur
+Lorem ipsum dolor sit amet, 
+consectetur`
+export const EndsOnNewlineWhileNextlineFits = Template.bind({});
+EndsOnNewlineWhileNextlineFits.args = {
+  children: ENDS_ON_NEWLINE_WHILE_NEXTLINE_FITS,
+};
