@@ -3,14 +3,14 @@ export const DEFAULT_WIDTH = 360;
 export const DEFAULT_EXPAND_TEXT_LABEL = '... more';
 
 /**
- * Returns truncated version of text, such that it would fit within container of specified max number of lines and width.
- * Takes into account the style properties of text, and leaves room for a labeled button to expand text.
- * @param {string} text - The text to truncate
- * @param {number=} maxLines - The max number of lines which the text should occupy after truncation
- * @param {number=} width - Width of container displaying truncated text
- * @param {string=} expandTextLabel - The label of the button to expand the text (Used to calculate truncated text)
- * @param {Object.<string, string>=} styles - Styles to apply to text size calculation (i.e. font, letter-spacing)
- * @returns {{ text: string, isTruncated: boolean }}
+ * Produces truncated version of text that fits within container of specified max number of lines and width.
+ * Considers the style properties of text, and leaves room for an ending label/button.
+ * @param {string} text The text to truncate
+ * @param {number=} maxLines The max number of lines which the text should occupy after truncation
+ * @param {number=} width Width of container displaying truncated text
+ * @param {string=} expandTextLabel The label of the button to expand the text (Used to calculate truncated text)
+ * @param {Object.<string, string>=} styles Styles to apply to text size calculation (i.e. font, letter-spacing)
+ * @returns {{ text: string, isTruncated: boolean }} Object containing output value and truncated status
  */
 export function truncateText(
   text,
@@ -132,9 +132,9 @@ export function truncateText(
 }
 
 /**
- * Returns string split on spaces, while including individual newline entries.
- * @param {string} string - The string to split
- * @returns {string[]}
+ * Produces array composed of string which is split on spaces, including entries for newlines and consecutive spaces.
+ * @param {string} string The string to split
+ * @returns {string[]} The split string
  */
 function splitStringOnSpacesAndNewlines(string) {
   let array = [];
