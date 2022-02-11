@@ -98,7 +98,11 @@ export function truncateText(
 
         const isWordsRemaining = () => textArrayIndex <= textArray.length - 1;
         while (isWordsRemaining() && lineContainer.clientWidth <= width) {
-          lineContent += textArray[textArrayIndex] + ' ';
+          if (textArray[textArrayIndex] === '\n') {
+            break;
+          } else {
+            lineContent += textArray[textArrayIndex] + ' ';
+          }
           lineContainer.innerText = lineContent;
           textArrayIndex++;
         }
