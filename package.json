@@ -24,6 +24,8 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "eslint": "^8.8.0",
+    "eslint-config-react-app": "^7.0.0",
     "web-vitals": "^2.1.4"
   },
   "eslintConfig": {
