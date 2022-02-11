@@ -26,6 +26,7 @@
     "@testing-library/user-event": "^13.5.0",
     "eslint": "^8.8.0",
     "eslint-config-react-app": "^7.0.0",
+    "storybook-builder-vite": "^0.1.15",
     "web-vitals": "^2.1.4"
   },
   "eslintConfig": {
