@@ -96,6 +96,7 @@ export function truncateText(
         let currentTextArrayIndex = textArrayIndex;
         let currentLineContent = lineContent;
 
+        // eslint-disable-next-line no-loop-func
         const isWordsRemaining = () => textArrayIndex <= textArray.length - 1;
         while (isWordsRemaining() && lineContainer.clientWidth <= width) {
           if (textArray[textArrayIndex] === '\n') {
