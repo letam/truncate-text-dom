@@ -4,7 +4,9 @@
 
 To install this library into your web project:
 
-### `npm i git+https://github.com/letam/truncate-text`
+```
+npm i git+https://github.com/letam/truncate-text
+```
 
 ## Usage/Import
 
