@@ -5,17 +5,15 @@ export default {
   component: TruncateText,
 };
 
-const width = DEFAULT_WIDTH;
-
 const Template = (args) => (
   <div
     style={{
       whiteSpace: 'pre-wrap',
       border: '1px dotted gray',
-      width,
+      width: args.width || DEFAULT_WIDTH,
     }}
   >
-    <TruncateText width={width} {...args} />
+    <TruncateText width={args.width} {...args} />
   </div>
 );
 
