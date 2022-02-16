@@ -100,7 +100,7 @@ const ENDS_ON_NEWLINE_WHILE_NEXTLINE_FITS = `Lorem ipsum dolor sit amet, consect
 Lorem ipsum dolor sit amet, consectetur
 Lorem ipsum dolor sit amet, consectetur
 Lorem ipsum dolor sit amet, 
-consectetur`
+consectetur`;
 export const EndsOnNewlineWhileNextlineFits = Template.bind({});
 EndsOnNewlineWhileNextlineFits.args = {
   children: ENDS_ON_NEWLINE_WHILE_NEXTLINE_FITS,
