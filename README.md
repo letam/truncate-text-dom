@@ -1,10 +1,12 @@
 # truncate-text
 
+
 ## Installation
 
 To install this library into your web project:
 
 ### `npm i truncate-text-dom`
+
 
 ## Usage/Import
 
@@ -22,6 +24,7 @@ truncateText(
   styles = {}  // styles to apply to text (optional)
 );
 ```
+
 
 ## Available Scripts
 

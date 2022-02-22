@@ -1,6 +1,6 @@
 {
   "name": "truncate-text-dom",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Function for finely-tuned text truncation in the DOM.",
   "main": "index.js",
   "license": "MIT",
