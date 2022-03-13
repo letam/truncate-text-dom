@@ -1,9 +1,10 @@
 {
   "name": "truncate-text-dom",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Function for finely-tuned text truncation in the DOM.",
   "main": "index.js",
   "license": "MIT",
+  "repository": "letam/truncate-text-dom",
   "scripts": {
     "dev": "vite",
     "lint": "eslint ./src",
