@@ -8,21 +8,16 @@
   "scripts": {
     "dev": "vite",
     "lint": "eslint ./src",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "storybook": "ladle serve",
+    "build-storybook": "ladle build",
+    "preview-storybook": "ladle preview"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^6.4.18",
-    "@storybook/addon-essentials": "^6.4.18",
-    "@storybook/addon-links": "^6.4.18",
-    "@storybook/node-logger": "^6.4.18",
-    "@storybook/react": "^6.4.18",
-    "@vitejs/plugin-react": "^1.2.0",
+    "@ladle/react": "^2.2.2",
     "eslint": "^8.8.0",
     "eslint-config-react-app": "^7.0.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "storybook-builder-vite": "^0.1.15"
+    "react-dom": "^17.0.2"
   },
   "eslintConfig": {
     "extends": [
