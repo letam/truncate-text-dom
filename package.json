@@ -8,21 +8,32 @@
   "scripts": {
     "dev": "vite",
     "lint": "eslint ./src",
-    "storybook": "ladle serve",
-    "build-storybook": "ladle build",
-    "preview-storybook": "ladle preview"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "preview-storybook": "storybook preview"
   },
   "devDependencies": {
-    "@ladle/react": "^2.2.2",
+    "@storybook/addon-essentials": "^7.0.17",
+    "@storybook/addon-interactions": "^7.0.17",
+    "@storybook/addon-links": "^7.0.17",
+    "@storybook/blocks": "^7.0.17",
+    "@storybook/react": "^7.0.17",
+    "@storybook/react-vite": "^7.0.17",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "eslint": "^8.8.0",
     "eslint-config-react-app": "^7.0.0",
+    "eslint-plugin-storybook": "^0.6.12",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "storybook": "^7.0.17",
+    "vite": "^4.3.8"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:storybook/recommended"
     ],
     "overrides": [
       {
